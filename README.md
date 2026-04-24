@@ -21,15 +21,3 @@ El sistema está diseñado bajo un enfoque modular y escalable:
 2. **Trazabilidad de Datos:** Inyección de metadatos que obliga a la IA a citar el documento fuente y la cláusula específica en cada respuesta.
 3. **Validación en Tiempo Real:** Búsqueda asíncrona que contrasta los contratos privados con las leyes públicas actualizadas mediante la API de la BCN.
 4. **Agente Inteligente:** Toma de decisiones autónoma para usar la herramienta de búsqueda interna (documentos) o externa (leyes) según el contexto de la pregunta del usuario.
-
----
-
-## 📂 Estructura Conceptual del Proyecto
-
-```text
-📁 lexi-guard/
-│
-├── 📄 README.md                # Documentación principal del proyecto
-├── 📄 arquitectura.mmd         # Script en Mermaid con el diagrama de flujo RAG
-├── 📄 prompts.md               # Ejemplos de System Prompts y User Prompts diseñados
-└── 📁 docs/                    # Carpeta para el informe técnico y documentación
