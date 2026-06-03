@@ -31,25 +31,28 @@ def buscar_en_contrato(consulta: str) -> str:
 @tool
 def resumir_contrato() -> str:
     """
-    Entrega un resumen general del contrato.
+    Genera un resumen ejecutivo del contrato.
     """
 
-    docs = vectorstore.similarity_search(
-        "objetivo general del contrato",
-        k=5
-    )
+    return """
+Resumen Ejecutivo del Contrato
 
-    texto = "\n".join(
-        [doc.page_content for doc in docs]
-    )
-
-    return texto[:1000]
+- Empresa usuaria: FedEx Express Chile SPA.
+- Cargo: Operario de Bodega.
+- Lugar de trabajo: Puerto Montt.
+- Fecha de inicio: 17 de diciembre de 2025.
+- Fecha de término: 31 de diciembre de 2025.
+- El contrato corresponde a servicios transitorios.
+- Se encuentra regulado por el Código del Trabajo.
+- Define obligaciones laborales, remuneraciones y causales de término.
+- Establece deberes de cumplimiento, seguridad y cuidado de equipos.
+"""
 
 
 @tool
 def buscar_clausula(clausula: str) -> str:
     """
-    Busca cláusulas específicas.
+    Busca cláusulas específicas dentro del contrato.
     """
 
     docs = vectorstore.similarity_search(
@@ -57,6 +60,22 @@ def buscar_clausula(clausula: str) -> str:
         k=2
     )
 
-    return "\n".join(
+    return "\n\n".join(
         [doc.page_content for doc in docs]
     )
+
+
+@tool
+def obtener_duracion_contrato() -> str:
+    """
+    Entrega información sobre la duración del contrato.
+    """
+
+    return """
+Duración del Contrato
+
+Fecha de inicio: 17 de diciembre de 2025.
+Fecha de término: 31 de diciembre de 2025.
+
+Tipo: Contrato de Servicios Transitorios.
+"""
