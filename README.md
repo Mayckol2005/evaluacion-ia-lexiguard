@@ -1,36 +1,262 @@
-# ⚖️ LexiGuard - Asistente Legal con IA (RAG)
+# ⚖️ LexiGuard Agent - Asistente Legal Inteligente con RAG
 
-LexiGuard es una solución de Inteligencia Artificial diseñada para **LexiFlow Solutions**, una consultora especializada en cumplimiento corporativo y derecho laboral en Chile. El sistema utiliza una arquitectura de **Generación Aumentada por Recuperación (RAG)** para analizar contratos y normativas chilenas con alta precisión, mitigando el riesgo de alucinaciones y garantizando la trazabilidad de la información.
+**Proyecto Académico – Ingeniería de Soluciones con Inteligencia Artificial (ISY0101)**
+
+**Docente:** Héctor Morel
+
+## 👥 Integrantes
+
+- Mayckol Mardones
+- Martin Baza
+- Martin Silva
+
+---
+
+## 📖 Descripción General
+
+LexiGuard Agent es una solución de Inteligencia Artificial desarrollada para apoyar el análisis de contratos laborales y documentación legal mediante técnicas de Recuperación Aumentada por Generación (RAG).
+
+El sistema combina búsqueda semántica sobre documentos legales, almacenamiento vectorial y herramientas especializadas para asistir en tareas de consulta, análisis y recuperación de información contractual.
 
 ---
 
 ## 🎯 Objetivo del Proyecto
-Automatizar la revisión legal de documentos internos, contrastándolos con normativas específicas para detectar riesgos de incumplimiento, reducir tiempos de revisión y asegurar la precisión jurídica mediante el uso de fuentes documentales verificables.
 
-## 🛠️ Arquitectura y Tecnologías Implementadas
-Para esta fase de evaluación, el sistema se construyó con el siguiente stack tecnológico:
+Desarrollar un agente inteligente capaz de:
 
-* **Modelo de Lenguaje (LLM):** Google Gemini 1.5 Flash (vía API).
-* **Embeddings:** `sentence-transformers/all-MiniLM-L6-v2` (HuggingFace) para la vectorización local de alta eficiencia.
-* **Orquestador:** LangChain (Arquitectura RAG directa y Agentes ReAct).
-* **Base de Datos Vectorial:** ChromaDB (Persistencia local de fragmentos de documentos).
-* **Procesamiento de Documentos:** PyPDF para la extracción de texto de contratos en formato PDF.
+- Analizar contratos laborales.
+- Recuperar información relevante desde documentos PDF.
+- Responder consultas específicas utilizando contexto documental.
+- Resumir documentos legales.
+- Buscar cláusulas específicas.
+- Mantener historial de interacción durante la ejecución.
 
-## 🚀 Implementación Técnica (Fase de Evaluación)
-Durante el desarrollo se implementaron y testearon los siguientes componentes:
+---
 
-* **Pipeline de Ingesta:** Carga de PDFs, división de texto en fragmentos (*chunks*) y generación de embeddings para almacenamiento en la base de datos vectorial (`chroma_db`).
-* **Sistema de Recuperación:** Implementación de búsqueda por similitud de coseno para extraer los 3 fragmentos más relevantes de cada consulta.
-* **Interfaz de Agente:** Se intentó inicialmente una implementación mediante Agentes ReAct (`AgentExecutor`) para otorgar autonomía en la toma de decisiones. Ante desafíos de compatibilidad de versiones de librerías modernas (LangChain 0.3.x / Pydantic V2), se migró exitosamente a una arquitectura de RAG Directo, garantizando estabilidad y precisión en la respuesta del LLM.
+## 🛠️ Tecnologías Utilizadas
 
-## ✨ Características Principales
-* **Control de Alucinaciones (Grounding):** El LLM recibe instrucciones estrictas para responder únicamente basándose en el contexto extraído del contrato de FedEx analizado.
-* **Local Embeddings:** Uso de modelos de HuggingFace corriendo localmente para optimizar costos y mejorar la velocidad de búsqueda.
-* **Prompt Engineering Avanzado:** Uso de plantillas personalizadas que definen el rol de LexiGuard como experto legal chileno.
+- Python 3.12
+- LangChain
+- ChromaDB
+- HuggingFace Embeddings
+- Sentence Transformers
+- PyPDF
+- GitHub
 
-## 🔧 Desafíos y Lecciones Aprendidas
-* **Compatibilidad de Ecosistema:** Se trabajó profundamente en la resolución de conflictos entre versiones de dependencias (Pydantic, LangChain Core y Google GenAI), logrando un entorno virtual estable.
-* **Consumo de APIs:** Ajuste dinámico de parámetros de conexión con Google Gemini para manejar versiones de API (v1 vs v1beta) según la región y disponibilidad de modelos.
-* **Modularidad:** La separación entre `ingestion.py` y `agent.py` permite escalar la base de conocimientos sin necesidad de procesar los documentos en cada consulta.
+---
+
+## 🏗️ Arquitectura General
+
+```text
+Usuario
+    │
+    ▼
+LexiGuard Agent
+    │
+    ▼
+Planificación y Toma de Decisiones
+    │
+    ├── buscar_en_contrato()
+    ├── resumir_contrato()
+    └── buscar_clausula()
+    │
+    ▼
+ChromaDB
+    │
+    ▼
+Contrato PDF
+    │
+    ▼
+Respuesta al Usuario
+```
+
+---
+
+## ⚙️ Componentes del Sistema
+
+### 1. Ingesta de Documentos
+
+El módulo `ingestion.py` realiza:
+
+- Lectura del contrato PDF.
+- División del documento en fragmentos (chunks).
+- Generación de embeddings.
+- Almacenamiento de vectores en ChromaDB.
+
+### 2. Base de Datos Vectorial
+
+Se utiliza ChromaDB para almacenar representaciones vectoriales del contrato y permitir búsquedas semánticas eficientes.
+
+### 3. Herramientas del Agente
+
+#### buscar_en_contrato()
+
+Permite recuperar información específica relacionada con una consulta del usuario.
+
+#### resumir_contrato()
+
+Obtiene información relevante del contrato para generar un resumen ejecutivo.
+
+#### buscar_clausula()
+
+Permite localizar cláusulas específicas dentro del documento.
+
+---
+
+## 🧠 Memoria y Recuperación de Contexto
+
+### Memoria de Corto Plazo
+
+El sistema mantiene un historial de interacciones durante la ejecución para conservar el contexto conversacional.
+
+### Memoria de Largo Plazo
+
+La información contractual se almacena en ChromaDB mediante embeddings semánticos, permitiendo recuperación contextual basada en similitud.
+
+---
+
+## 🤖 Planificación y Toma de Decisiones
+
+El agente analiza la intención de cada consulta y selecciona automáticamente la herramienta más adecuada.
+
+### Ejemplos
+
+**Consulta:**
+
+```text
+Genera un resumen del contrato
+```
+
+**Acción seleccionada:**
+
+```text
+resumir_contrato()
+```
+
+**Consulta:**
+
+```text
+Busca la cláusula de indemnización
+```
+
+**Acción seleccionada:**
+
+```text
+buscar_clausula()
+```
+
+**Consulta:**
+
+```text
+¿Cuáles son las obligaciones del trabajador?
+```
+
+**Acción seleccionada:**
+
+```text
+buscar_en_contrato()
+```
+
+Esta lógica permite adaptar el comportamiento del agente según las necesidades del usuario.
+
+---
+
+## 🚀 Instalación
+
+### Clonar repositorio
+
+```bash
+git clone https://github.com/mvrtinnbz/evaluacion-ia-lexiguard.git
+cd evaluacion-ia-lexiguard
+```
+
+### Instalar dependencias
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## ▶️ Ejecución
+
+### Procesar documento PDF
+
+```bash
+python src/ingestion.py
+```
+
+### Ejecutar pruebas
+
+```bash
+python tests.py
+```
+
+---
+
+## 📂 Estructura del Proyecto
+
+```text
+evaluacion-ia-lexiguard/
+│
+├── chroma_db/
+│
+├── data/
+│   └── contrato_fedex.pdf
+│
+├── src/
+│   ├── agent.py
+│   ├── ingestion.py
+│   └── tools.py
+│
+├── tests.py
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## ✅ Funcionalidades Implementadas
+
+- Recuperación semántica mediante ChromaDB.
+- Uso de múltiples herramientas especializadas.
+- Procesamiento de documentos PDF.
+- Planificación basada en intención.
+- Memoria conversacional.
+- Recuperación contextual mediante embeddings.
+- Búsqueda de cláusulas específicas.
+- Generación de resúmenes documentales.
+
+---
+
+## 🔧 Desafíos Encontrados
+
+Durante el desarrollo se presentaron dificultades relacionadas con la compatibilidad entre distintas versiones de LangChain, LangGraph y modelos de lenguaje externos.
+
+Para garantizar estabilidad y reproducibilidad durante la evaluación, se optó por una arquitectura completamente local basada en:
+
+- ChromaDB
+- HuggingFace Embeddings
+- Sentence Transformers
+- Herramientas implementadas mediante LangChain
+
+Esta solución permitió mantener las funcionalidades principales del agente sin depender de servicios externos.
+
+---
+
+## 🎓 Contexto Académico
+
+Proyecto desarrollado para la asignatura **Ingeniería de Soluciones con Inteligencia Artificial (ISY0101)**.
+
+El trabajo aplica conceptos fundamentales de:
+
+- Agentes Inteligentes
+- Retrieval Augmented Generation (RAG)
+- Bases de Datos Vectoriales
+- Memoria Conversacional
+- Recuperación de Contexto
+- Planificación
+- Toma de Decisiones
+- Procesamiento Inteligente de Documentos
 
 ---
