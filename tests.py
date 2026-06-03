@@ -1,3 +1,6 @@
+import sys
+
+sys.stdout.reconfigure(encoding="utf-8")
 from src.agent import crear_agente
 
 agente = crear_agente()

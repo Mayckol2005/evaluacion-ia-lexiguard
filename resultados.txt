@@ -1,0 +1,117 @@
+
+=== PRUEBA 1 ===
+Consulta sobre responsabilidades
+
+Herramienta utilizada:
+buscar_en_contrato
+
+Respuesta:
+SEGUNDO: Por el presente acto e instrumento, la EST contrata al Trabajador para que éste
+realice labores especíﬁcas de OPERARIO DE BODEGA PUERTO MONTT  para la empresa
+usuaria denominada FEDEX EXPRESS CHILE SPA , cuya dirección es SANTA CATALINA
+DE CHENA 1001, SAN BERNARDO  y a su vez el trabajador será destinado a PARQUE
+HUSAMONTT KILOMETRO 3, CENTRO EMPRESARIAL, PUERTO MONTT  o bien, en
+cualquier otro lugar que la empresa usuaria estime conveniente, dentro de la Región, las
+órdenes e instrucciones que le sean impartidas por la empresa usuaria, dentro del ámbito
+de las funciones para las cuales fue puesto a su disposición.
+El Trabajador se compromete por este acto, y desde ya, a cumplir ﬁel e íntegramente las
+obligaciones que le impone el presente contrato de trabajo de servicios transitorios, de
+manera  que  su  incumplimiento  grave  constituirá  infracción  a  él,  y  conﬁgurará,  en
+consecuencia, la causal de terminación de contrato de trabajo de acuerdo a lo establecido
+
+Dedicación exclusiva al cargo, en virtud de esta obligación el trabajador se encuentra
+impedido de desarrollar otras actividades o negociaciones durante el desempeño de
+su cargo.
+El trabajador no podrá llevar a cabo o participar, por su cuenta, en negocios del giro
+del empleador.
+Desempeñar  las  labores  que  se  le  encomienda  en  forma  ﬁel  y  eﬁciente,  debiendo
+acatar las órdenes de sus jefes directos.
+Utilizar los implementos de seguridad que corresponda dada la naturaleza del trabajo
+que se encuentre desempeñando.
+Todas aquellas obligaciones encomendadas por la empresa usuaria, órdenes e
+instrucciones de su jefe directo y otras obligaciones emanadas del presente contrato
+de trabajo de servicios transitorios, del Reglamento de Orden, Seguridad e Higiene de
+la empresa usuaria y otras leyes que sobre la materia se aplique, todos los que el
+trabajador declara en este acto conocer.
+Mantener con el resto de los trabajadores y en general con todo el personal que
+
+perjuicio de la interposición de las acciones judiciales y extrajudiciales que fueren
+pertinentes.
+SEPTIMO: Cuidado de equipos de Cargo:  El trabajador estará obligado a prestar el
+mayor cuidado posible en todo equipo que la empresa usuaria y/o la EST pongan a su
+disposición para el desempeño de su labor, debiendo al efecto, utilizarlo sólo para los ﬁnes
+para los que fue creado. Asimismo, deberá informar oportunamente a su superior, ante
+cualquier desperfecto que detecte en los equipos proporcionados para su uso, a ﬁn de que
+no entorpezca el proceso productivo de la empresa usuaria y/o de la EST.
+Si por la naturaleza de sus funciones el trabajador hace uso de equipos de computación, se
+compromete a usar solamente las copias de los softwares de los cuales la empresa usuaria
+y/o la EST hayan adquirido una licencia o derecho; a leer los respectivos contratos de
+licencia, cumplir lo allí establecido, y no permitir el uso de copias ilegales de software en los
+
+
+=== PRUEBA 2 ===
+Generación de resumen
+
+Herramienta utilizada:
+resumir_contrato
+
+Respuesta:
+
+Resumen Ejecutivo del Contrato
+
+- Empresa usuaria: FedEx Express Chile SPA.
+- Cargo: Operario de Bodega.
+- Lugar de trabajo: Puerto Montt.
+- Fecha de inicio: 17 de diciembre de 2025.
+- Fecha de término: 31 de diciembre de 2025.
+- El contrato corresponde a servicios transitorios.
+- Se encuentra regulado por el Código del Trabajo.
+- Define obligaciones laborales, remuneraciones y causales de término.
+- Establece deberes de cumplimiento, seguridad y cuidado de equipos.
+
+
+
+=== PRUEBA 3 ===
+Búsqueda de cláusula
+
+Herramienta utilizada:
+buscar_clausula
+
+Respuesta:
+pago se efectuará en dinero efectivo o por medio de cheque o vale vista bancario o por
+medio de cajero automático o similar, declarando desde ya el trabajador que acepta
+cualquiera de estas formas de pago, y se efectuará el quinto día hábil del mes  del cual
+se prestaron los servicios.
+La contabilización de los días a pagar se realizará por día efectivamente trabajado e
+informado por la empresa usuaria.
+Se deja expresa constancia que en la remuneración convenida en el presente contrato se
+considera la gratiﬁcación legal, el desahucio, las indemnizaciones por años de servicios y
+sustitutiva del aviso previo, y cualquier otro concepto que se devengue en proporción al
+tiempo servido, en conformidad a lo señalado en el artículo 183-Z del Código del Trabajo, y
+de acuerdo al siguiente detalle:
+CUARTO: Cualquiera otra suma ocasional o periódica no pactada expresamente por escrito
+que la EST conceda al trabajador, fuera de la indicada, se entenderá conferida a título de
+
+2. Cuando incumpla su jornada laboral ordinaria, entendiéndose por tal, toda ausencia no
+autorizada por su jefatura o que estando autorizada sobrepase el tiempo pactado por
+escrito, y toda salida intempestiva de su lugar de trabajo durante la jornada pactada, sin
+autorización de su jefatura.
+c)  Gratiﬁcación  legal equivalente  al  veinticinco  por  ciento  de  lo  devengado  en  el
+respectivo ejercicio comercial por concepto de remuneraciones mensuales, con un límite de
+
+
+=== PRUEBA 4 ===
+Consulta de duración
+
+Herramienta utilizada:
+obtener_duracion_contrato
+
+Respuesta:
+
+Duración del Contrato
+
+Fecha de inicio: 17 de diciembre de 2025.
+Fecha de término: 31 de diciembre de 2025.
+
+Tipo: Contrato de Servicios Transitorios.
+
