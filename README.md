@@ -1,262 +1,371 @@
-# ⚖️ LexiGuard Agent - Asistente Legal Inteligente con RAG
+# ⚖️ LexiGuard
+## Sistema de Observabilidad, Trazabilidad y Agente RAG Local
 
-**Proyecto Académico – Ingeniería de Soluciones con Inteligencia Artificial (ISY0101)**
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
+![LangChain](https://img.shields.io/badge/LangChain-RAG-green)
+![ChromaDB](https://img.shields.io/badge/VectorDB-ChromaDB-purple)
+![License](https://img.shields.io/badge/License-Academic-lightgrey)
+
+Asignatura **Ingeniería de Soluciones con Inteligencia Artificial**
+
+**Institución:** Duoc UC
 
 **Docente:** Héctor Morel
 
-## 👥 Integrantes
+---
+
+# 👥 Integrantes
 
 - Mayckol Mardones
 - Martin Baza
-- Martin Silva
 
 ---
 
-## 📖 Descripción General
+# 📚 Descripción
 
-LexiGuard Agent es una solución de Inteligencia Artificial desarrollada para apoyar el análisis de contratos laborales y documentación legal mediante técnicas de Recuperación Aumentada por Generación (RAG).
+LexiGuard es una solución empresarial basada en Inteligencia Artificial diseñada para apoyar el análisis de contratos laborales y documentos legales mediante técnicas de **Retrieval Augmented Generation (RAG)**.
 
-El sistema combina búsqueda semántica sobre documentos legales, almacenamiento vectorial y herramientas especializadas para asistir en tareas de consulta, análisis y recuperación de información contractual.
+El sistema incorpora:
 
----
+- Búsqueda semántica sobre documentos PDF
+- Base de datos vectorial local
+- Observabilidad en tiempo real
+- Trazabilidad completa de consultas
+- Arquitectura completamente local
+- Protección de datos sensibles
 
-## 🎯 Objetivo del Proyecto
-
-Desarrollar un agente inteligente capaz de:
-
-- Analizar contratos laborales.
-- Recuperar información relevante desde documentos PDF.
-- Responder consultas específicas utilizando contexto documental.
-- Resumir documentos legales.
-- Buscar cláusulas específicas.
-- Mantener historial de interacción durante la ejecución.
+A diferencia de soluciones tradicionales con respuestas hardcodeadas, LexiGuard genera respuestas dinámicamente utilizando únicamente el contenido presente en los documentos cargados.
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+# 🎯 Objetivos
 
-- Python 3.12
-- LangChain
-- ChromaDB
-- HuggingFace Embeddings
-- Sentence Transformers
-- PyPDF
-- GitHub
+El proyecto busca desarrollar un agente inteligente capaz de:
+
+- Analizar contratos dinámicamente
+- Implementar observabilidad (IL3.1)
+- Implementar trazabilidad (IL3.2)
+- Garantizar un uso responsable de IA (IL3.3)
+- Evaluar la escalabilidad (IL3.4)
 
 ---
 
-## 🏗️ Arquitectura General
+# 🛠 Tecnologías
 
-```text
+| Tecnología | Uso |
+|------------|------|
+| Python 3.12 | Lenguaje principal |
+| Streamlit | Dashboard |
+| LangChain | Framework RAG |
+| ChromaDB | Base vectorial |
+| HuggingFace Embeddings | Embeddings locales |
+| Sentence Transformers | Modelo semántico |
+| PyPDFLoader | Lectura de PDF |
+
+---
+
+# 🏗 Arquitectura
+
+```
 Usuario
-    │
-    ▼
-LexiGuard Agent
-    │
-    ▼
-Planificación y Toma de Decisiones
-    │
-    ├── buscar_en_contrato()
-    ├── resumir_contrato()
-    └── buscar_clausula()
-    │
-    ▼
-ChromaDB
-    │
-    ▼
-Contrato PDF
-    │
-    ▼
-Respuesta al Usuario
+   │
+   ▼
+Dashboard (Streamlit)
+   │
+   ▼
+Agent (LangChain)
+   │
+   ├──────── buscar_en_contrato()
+   ├──────── buscar_clausula()
+   └──────── resumir_contrato()
+             │
+             ▼
+        ChromaDB
+             │
+             ▼
+         Documentos PDF
+             │
+             ▼
+ telemetry_logs.json
 ```
 
 ---
 
-## ⚙️ Componentes del Sistema
+# ⚙ Componentes
 
-### 1. Ingesta de Documentos
+## Ingesta dinámica
 
-El módulo `ingestion.py` realiza:
+El sistema:
 
-- Lectura del contrato PDF.
-- División del documento en fragmentos (chunks).
-- Generación de embeddings.
-- Almacenamiento de vectores en ChromaDB.
+- Detecta automáticamente todos los PDF dentro de `data/`
+- Divide los documentos en chunks
+- Genera embeddings
+- Guarda la información en ChromaDB
 
-### 2. Base de Datos Vectorial
-
-Se utiliza ChromaDB para almacenar representaciones vectoriales del contrato y permitir búsquedas semánticas eficientes.
-
-### 3. Herramientas del Agente
-
-#### buscar_en_contrato()
-
-Permite recuperar información específica relacionada con una consulta del usuario.
-
-#### resumir_contrato()
-
-Obtiene información relevante del contrato para generar un resumen ejecutivo.
-
-#### buscar_clausula()
-
-Permite localizar cláusulas específicas dentro del documento.
+No existen nombres de archivos fijos.
 
 ---
 
-## 🧠 Memoria y Recuperación de Contexto
+## Herramientas del agente
 
-### Memoria de Corto Plazo
+### buscar_en_contrato()
 
-El sistema mantiene un historial de interacciones durante la ejecución para conservar el contexto conversacional.
+Realiza búsquedas semánticas sobre el contrato.
 
-### Memoria de Largo Plazo
+### buscar_clausula()
 
-La información contractual se almacena en ChromaDB mediante embeddings semánticos, permitiendo recuperación contextual basada en similitud.
+Encuentra cláusulas específicas.
 
----
+### resumir_contrato()
 
-## 🤖 Planificación y Toma de Decisiones
-
-El agente analiza la intención de cada consulta y selecciona automáticamente la herramienta más adecuada.
-
-### Ejemplos
-
-**Consulta:**
-
-```text
-Genera un resumen del contrato
-```
-
-**Acción seleccionada:**
-
-```text
-resumir_contrato()
-```
-
-**Consulta:**
-
-```text
-Busca la cláusula de indemnización
-```
-
-**Acción seleccionada:**
-
-```text
-buscar_clausula()
-```
-
-**Consulta:**
-
-```text
-¿Cuáles son las obligaciones del trabajador?
-```
-
-**Acción seleccionada:**
-
-```text
-buscar_en_contrato()
-```
-
-Esta lógica permite adaptar el comportamiento del agente según las necesidades del usuario.
+Genera un resumen ejecutivo del documento.
 
 ---
 
-## 🚀 Instalación
+## Telemetría
 
-### Clonar repositorio
+Cada interacción queda registrada en:
+
+```
+telemetry_logs.json
+```
+
+Ejemplo:
+
+```json
+{
+  "timestamp": "2026-06-26T17:15:32",
+  "session_id": "st-session-df89c2",
+  "user_query": "¿Cuál es el sueldo?",
+  "retrieved_chunks_count": 4,
+  "execution_time_ms": 1820,
+  "status": "SUCCESS"
+}
+```
+
+---
+
+# 🧠 Uso Responsable (IL3.3)
+
+## Memoria
+
+- Historial conversacional temporal
+- Memoria vectorial persistente mediante ChromaDB
+
+## Mitigación de Alucinaciones
+
+El agente solamente responde utilizando información recuperada desde el documento.
+
+Si la información no existe, responde que no puede encontrarla.
+
+---
+
+# 🤖 Flujo del Agente
+
+Pregunta del usuario
+
+↓
+
+Identificación de intención
+
+↓
+
+Selección automática de herramienta
+
+↓
+
+Recuperación de contexto
+
+↓
+
+Generación de respuesta
+
+---
+
+# 🚀 Instalación
+
+## Clonar repositorio
 
 ```bash
-git clone https://github.com/mvrtinnbz/evaluacion-ia-lexiguard.git
+git clone https://github.com/Mayckol2005/evaluacion-ia-lexiguard.git
+
 cd evaluacion-ia-lexiguard
 ```
 
-### Instalar dependencias
+---
+
+## Crear entorno virtual
+
+### Windows
 
 ```bash
+python -m venv .venv
+
+.venv\Scripts\activate
+```
+---
+
+## Instalar dependencias
+
+```bash
+pip install --upgrade pip
+
 pip install -r requirements.txt
 ```
 
 ---
 
-## ▶️ Ejecución
+# ▶ Ejecución
 
-### Procesar documento PDF
+## 1. Eliminar la base vectorial
+
+Eliminar completamente la carpeta
+
+```
+chroma_db/
+```
+
+---
+
+## 2. Copiar el contrato
+
+Guardar únicamente el contrato que será analizado dentro de
+
+```
+data/
+```
+
+---
+
+## 3. Ejecutar la ingesta
 
 ```bash
 python src/ingestion.py
 ```
 
-### Ejecutar pruebas
+Salida esperada
 
-```bash
-python tests.py
+```
+📂 Archivos detectados:
+
+contrato_ficticio_chile.pdf
+
+✅ Base vectorial actualizada correctamente.
 ```
 
 ---
 
-## 📂 Estructura del Proyecto
+## 4. Ejecutar Streamlit
 
-```text
+```bash
+streamlit run dashboard.py
+```
+
+Abrir
+
+```
+http://localhost:8501
+```
+
+---
+
+# 🧪 Casos de prueba
+
+## Jornada laboral
+
+```
+¿Cuál es la jornada laboral de Alejandro?
+```
+
+Debe responder:
+
+- 40 horas semanales
+- lunes a viernes
+- 09:00 a 17:00
+- 45 minutos de colación
+
+---
+
+## Remuneración
+
+```
+¿Cuál es la remuneración?
+```
+
+Debe recuperar:
+
+- $2.800.000
+- Colación $90.000
+- Movilización $70.000
+
+---
+
+## Telemetría
+
+Verificar:
+
+- Precisión de contexto
+- Latencia
+- Consumo RAM
+- telemetry_logs.json
+
+---
+
+# 📁 Estructura del proyecto
+
+```
 evaluacion-ia-lexiguard/
+
 │
+
 ├── chroma_db/
-│
+
 ├── data/
-│   └── contrato_fedex.pdf
-│
+
+│ └── contrato_ficticio_chile.pdf
+
 ├── src/
-│   ├── agent.py
-│   ├── ingestion.py
-│   └── tools.py
-│
+
+│ ├── agent.py
+
+│ ├── ingestion.py
+
+│ └── tools.py
+
+├── dashboard.py
+
+├── telemetry_logs.json
+
 ├── tests.py
+
 ├── requirements.txt
+
 └── README.md
 ```
 
 ---
 
-## ✅ Funcionalidades Implementadas
+# 🎓 Contexto Académico
 
-- Recuperación semántica mediante ChromaDB.
-- Uso de múltiples herramientas especializadas.
-- Procesamiento de documentos PDF.
-- Planificación basada en intención.
-- Memoria conversacional.
-- Recuperación contextual mediante embeddings.
-- Búsqueda de cláusulas específicas.
-- Generación de resúmenes documentales.
+Proyecto desarrollado para la asignatura:
 
----
+**Ingeniería de Soluciones con Inteligencia Artificial**
 
-## 🔧 Desafíos Encontrados
+Escuela de Informática y Telecomunicaciones
 
-Durante el desarrollo se presentaron dificultades relacionadas con la compatibilidad entre distintas versiones de LangChain, LangGraph y modelos de lenguaje externos.
-
-Para garantizar estabilidad y reproducibilidad durante la evaluación, se optó por una arquitectura completamente local basada en:
-
-- ChromaDB
-- HuggingFace Embeddings
-- Sentence Transformers
-- Herramientas implementadas mediante LangChain
-
-Esta solución permitió mantener las funcionalidades principales del agente sin depender de servicios externos.
+Duoc UC
 
 ---
 
-## 🎓 Contexto Académico
-
-Proyecto desarrollado para la asignatura **Ingeniería de Soluciones con Inteligencia Artificial (ISY0101)**.
-
-El trabajo aplica conceptos fundamentales de:
+# 📖 Conceptos aplicados
 
 - Agentes Inteligentes
 - Retrieval Augmented Generation (RAG)
-- Bases de Datos Vectoriales
+- ChromaDB
+- Embeddings
+- LangChain
 - Memoria Conversacional
-- Recuperación de Contexto
-- Planificación
-- Toma de Decisiones
-- Procesamiento Inteligente de Documentos
-
----
+- Observabilidad
+- Trazabilidad
+- IA Responsable

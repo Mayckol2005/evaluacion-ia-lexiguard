@@ -88,7 +88,7 @@ if not df.empty:
     k4.metric("Tasa de Éxito", f"{tasa_exito:.1f}%")
 
     # Fila 2 de KPIs: Requisitos Rúbrica EP3 (IE1, IE2)
-    st.markdown("#### 🛡️ Indicadores Clave de Calidad y Recursos (Rúbrica Entrega 3)")
+    st.markdown("#### 🛡️ Indicadores Clave de Calidad y Recursos")
     k5, k6, k7, k8 = st.columns(4)
     
     prec_prom = df["precision_score"].mean() * 100 if "precision_score" in df.columns else 0.0
@@ -127,7 +127,7 @@ if not df.empty:
 
     # NUEVA SECCIÓN DE GRÁFICOS EXIGIDA POR LA RÚBRICA (IE1, IE2, Evidencia Visual IE8)
     st.markdown("---")
-    st.subheader("🎯 Análisis de Trazabilidad y Capacidad Local (IE1 & IE2)")
+    st.subheader("🎯 Análisis de Trazabilidad y Capacidad Local")
     col3, col4 = st.columns(2)
     with col3:
         st.subheader("🎯 Evolución de la Precisión de Contexto (Similitud Vectorial)")
